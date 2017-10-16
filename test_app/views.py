@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from django.views.generic.edit import FormView
+from .form import TestForm
+from .models import DataSet
 
-# Create your views here.
+
+class TestView(FormView):
+    template_name = 'test.html'
+    form_class = TestForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        data_set = DataSet(a=form.cleaned_data.get('a'),
+                           b=form.cleaned_data.get('b'))
+        data_set.save()
+        return super().form_valid(form)

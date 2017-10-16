@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from test_task.views import TestView
+from test_app.views import TestView
 
 urlpatterns = [
     url(r'^$', TestView.as_view(), name="test"),
