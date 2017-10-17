@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block content %}
+  <table class="table table-inverse m-auto">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>a</th>
+        <th>b</th>
+        <th>result</th>
+        <th>exceptions</th>
+        <th>created_on</th>
+        <th>result_calculated_on</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data_set in object_list %}
+        <tr>
+          <td>{{data_set.id}}</td>
+          <td>{{data_set.a}}</td>
+          <td>{{data_set.b}}</td>
+          <td>{{data_set.result}}</td>
+          <td>{{data_set.exceptions}}</td>
+          <td>{{data_set.created_on}}</td>
+          <td>{{data_set.result_calculated_on}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock%}
