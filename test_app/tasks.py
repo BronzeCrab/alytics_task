@@ -1,13 +1,22 @@
 from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from celery.utils.log import get_task_logger
-import json
+from datetime import datetime
+from .models import DataSet
 
 logger = get_task_logger(__name__)
 
 
-@shared_task(bind=True)
-def test_func(data):
+@shared_task()
+def test_func(dataset_id):
     logger.info("Start task")
-    d = json.loads(data)
-    return {'result': d['a'] + d['b']}
+    dataset = DataSet.objects.get(id=dataset_id)
+    try:
+        result = dataset.a + dataset.b
+    except Exception as e:
+        dataset.exceptions = e
+    else:
+        dataset.result = result
+        dataset.result_calculated_on = datetime.now()
+    dataset.save()
+    return {'result': result}

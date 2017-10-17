@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from test_app.views import TestView, DataSetListView
+from test_app.views import AddView, DataSetListView, ControlView
 
 urlpatterns = [
-    url(r'^$', TestView.as_view(), name="test"),
+    url(r'^$', AddView.as_view(), name="add_view"),
     url(r'^datasets/$', DataSetListView.as_view(), name="data_set_list_view"),
+    url(r'^control/$', ControlView.as_view(), name="control_view"),
     url(r'^admin/', admin.site.urls),
 ]

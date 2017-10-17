@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card text-center m-auto" style="width: 20rem;">
+      <form method='post' action="{% url 'control_view' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Запустить выполнение задач</button>
+      </form>
+    </div>
+  </div>
+{% endblock%}
